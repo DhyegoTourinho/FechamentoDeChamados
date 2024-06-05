@@ -6,11 +6,11 @@ import logging;
 def Conecta_ao_banco():
     try:
         conexao = psycopg2.connect(
-            host='172.16.0.50',
-            port='5432',
-            user='rpa',
-            password='Jump@@jet@',
-            dbname='rpa'
+            host='generalizado',
+            port='generalizado',
+            user='generalizado',
+            password='generalizado',
+            dbname='generalizado'
         )
     except psycopg2.OperationalError as e:
         logging.error(f'O erro {e} ocorreu ao tentar conectar ao banco de dados.')
@@ -38,7 +38,7 @@ def Atribui_chamado(lista_chamados):
     for chamados in lista_chamados:
         if chamados[1] == True:
             url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamados[0]}/assign'
-            headers = {"authtoken": "40605592-93B7-4820-B4E4-E352FA8A3754"}
+            headers = {"authtoken": "Inhackeavel"}
             input_data = '''{
                             "request": {
                                 "technician": {
@@ -48,7 +48,7 @@ def Atribui_chamado(lista_chamados):
                         }'''
         else:
             url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamados[0]}/assign'
-            headers = {"authtoken": "40605592-93B7-4820-B4E4-E352FA8A3754"}
+            headers = {"authtoken": "Inhackeavel"}
             input_data = '''{
                             "request": {
                                 "technician": {
@@ -68,7 +68,7 @@ def Altera_status_chamado(lista_chamados):
     status_chamado = ['Atribuído', 'Em Progresso']
     for chamados in lista_chamados:
         url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamados[0]}'
-        headers = {"authtoken": "40605592-93B7-4820-B4E4-E352FA8A3754"}
+        headers = {"authtoken": "Inhackeavel"}
         for status in status_chamado:
             input_data = f'''{{
                 "request": {{
@@ -84,7 +84,7 @@ def Altera_status_chamado(lista_chamados):
 def Encaminha_resolucao_chamado(lista_chamados):
     for chamados in lista_chamados:
         url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamados[0]}/resolutions'
-        headers = {"authtoken":"40605592-93B7-4820-B4E4-E352FA8A3754"}
+        headers = {"authtoken": "Inhackeavel"}
         input_data = '''{
                     "resolution": {
                         "content": "Colaborador cadastrado com sucesso."
@@ -97,7 +97,7 @@ def Encaminha_resolucao_chamado(lista_chamados):
 def AdiconaLog(lista_chamados):
     for chamados in lista_chamados:
         url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamados[0]}/worklogs'
-        headers ={"authtoken":"40605592-93B7-4820-B4E4-E352FA8A3754","accept" : "application/vnd.manageengine.sdp.v3+json"}
+        headers ={"authtoken": "Inhackeavel"}
         input_data = '''{"worklog":{"owner":{"id":"7060","name":"RPA"}}}'''
         data = {'input_data': input_data}
         response = requests.post(url = url,headers = headers,data = data,verify = False)
@@ -107,7 +107,7 @@ def Fecha_chamado(lista_chamados):
     lista_status = ['Resolução Proposta']
     for chamado in lista_chamados:
         url = f'https://suporte.gavresorts.com.br/api/v3/requests/{chamado[0]}'
-        headers = {"authtoken": "40605592-93B7-4820-B4E4-E352FA8A3754"}
+        headers = {"authtoken": "Inhackeavel"}
         for status in lista_status:
             input_data = f'''{{
                 "request": {{
